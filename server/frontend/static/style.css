@@ -4,7 +4,8 @@ img {
 }
 
 .card {
-    border: rgb(103, 102, 105) 3px solid;
+    border: rgb(203, 202, 205) 3px solid;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     margin-left: 5%;
