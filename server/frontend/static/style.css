@@ -14,6 +14,19 @@ img {
     margin-bottom: 1%;
 }
 
+.contact_image {
+    margin-left: 10%;
+    width: 80%;
+}
+
+.contact_text {
+    margin-top: 10%;
+    color: steelblue;
+    font-size: large;
+    font-weight: bold;
+    font-family: "Nimbus Roman";
+}
+
 .row {
     display: flex;
     flex: 1;
