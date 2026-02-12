@@ -9,7 +9,39 @@
     <script>
 
         const logout = async (e) => {
-//Include the code for logout here.
+            //Include the code for logout here.
+            // Build logout URL and Make GET request to logout endpoint
+
+            let username = sessionStorage.getItem('username');
+            console.log(username + " clicked LOGOUT!!  I'm gonna do it!!");
+            if (!username) {
+                alert("No user to log out.");
+                return;
+            }
+
+            console.log("Gonna make the async fetch request!!!!");
+            let logout_url = window.location.origin + "/djangoapp/logout";
+
+            try {
+                const res = await fetch(logout_url, {
+                    method: "GET",
+                });
+                const json = await res.json();
+                console.log("Made the async fetch request!!!!");
+
+                if (json) {
+                    // Clear session storage and reload page
+                    sessionStorage.removeItem('username');
+                    // Notify user of logout
+                    alert("Logging out " + username + "...")
+                } else {
+                    alert("The user could not be logged out.")
+                }
+            } catch (error) {
+                console.log("logout failed:", error);
+            }
+            // do not reload; rather assign url
+            window.location.assign(window.location.origin);
         };
 
         let checkSession = () => {
