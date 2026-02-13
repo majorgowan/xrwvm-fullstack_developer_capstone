@@ -12,6 +12,7 @@ services:
       - mongo_data:/data/db
 
   # Node api service
+  # for IBM Cloud Engine, add registry bzw. tag to image name
   api:
     image: nodeapp
     ports:

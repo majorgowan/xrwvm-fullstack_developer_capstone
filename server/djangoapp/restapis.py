@@ -4,6 +4,8 @@ import os
 from dotenv import load_dotenv
 
 
+# uncomment if using local .env file
+# comment out on Cloud Engine and set variables in deployment.yml file
 load_dotenv()
 
 backend_url = os.getenv('backend_url', default="http://localhost:3030")
