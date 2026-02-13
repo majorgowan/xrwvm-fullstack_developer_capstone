@@ -44,8 +44,8 @@ def login_user(request):
 # Create a `logout_request` view to handle sign out request
 @csrf_exempt
 def logout_request(request):
-    logout(request) # Terminate user session
-    data = {"userName": ""} # Return empty username
+    logout(request)  # Terminate user session
+    data = {"userName": ""}  # Return empty username
     print("logout view called!")
     return JsonResponse(data)
 
@@ -82,17 +82,17 @@ def registration(request):
                                         email=email)
         # Login the user and redirect to list page
         login(request, user)
-        data = {"userName":username, "status": "Authenticated"}
+        data = {"userName": username, "status": "Authenticated"}
         return JsonResponse(data)
-    else :
-        data = {"userName":username, "error": "Already Registered"}
+    else:
+        data = {"userName": username, "error": "Already Registered"}
         return JsonResponse(data)
 
 
 def get_cars(request):
     count = CarMake.objects.filter().count()
     print(count)
-    if(count == 0):
+    if (count == 0):
         initiate()
     car_models = CarModel.objects.select_related('car_make')
     cars = []
@@ -106,9 +106,10 @@ def get_cars(request):
 # a list of dealerships
 # def get_dealerships(request):
 # ...
-#Update the `get_dealerships` render list of dealerships all by default, particular state if state is passed
+# Update the `get_dealerships` render list of dealerships all by default,
+# particular state if state is passed
 def get_dealerships(request, state="All"):
-    if(state == "All"):
+    if (state == "All"):
         endpoint = "/fetchDealers"
     else:
         endpoint = "/fetchDealers/" + state
@@ -151,14 +152,14 @@ def get_dealer_details(request, dealer_id):
 # def add_review(request):
 # ...
 def add_review(request):
-    if(request.user.is_anonymous == False):
+    if not request.user.is_anonymous:
         data = json.loads(request.body)
         try:
-            response = post_review(data)
-            return JsonResponse({"status":200})
-        except:
+            post_review(data)
+            return JsonResponse({"status": 200})
+        except Exception:
             return JsonResponse({"status": 401,
                                  "message": "Error in posting review"})
     else:
-        return JsonResponse({"status":403,
+        return JsonResponse({"status": 403,
                              "message": "Unauthorized"})
