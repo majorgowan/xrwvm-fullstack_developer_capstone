@@ -1,0 +1,10 @@
+{
+  "esversion": 8,
+  "node": true,
+  "browser": true,
+  "strict": false,
+  "globals": {
+    "console": true
+  },
+  "sub": true
+}
