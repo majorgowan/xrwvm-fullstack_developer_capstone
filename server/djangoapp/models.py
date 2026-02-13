@@ -35,6 +35,7 @@ MODEL_TYPES = [
     ("EV", "EV")
 ]
 
+
 class CarModel(models.Model):
     name = models.CharField(max_length=32)
     model_type = models.CharField(max_length=24, choices=MODEL_TYPES,
@@ -43,5 +44,7 @@ class CarModel(models.Model):
                                            MaxValueValidator(2023)])
     # Many-to-One relationship
     car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
+
     def __str__(self):
-        return f"{self.car_make.name} {self.name} ({self.model_type}, {self.year})"
+        return (f"{self.car_make.name} {self.name}"
+                + f" ({self.model_type}, {self.year})")
